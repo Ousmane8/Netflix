@@ -1,14 +1,19 @@
 <template>
   <div id="app">
-<!--    <div id="nav">-->
-<!--      <router-link to="/">Home</router-link> |-->
-<!--      <router-link to="/about">About</router-link>-->
-<!--    </div>-->
     <router-view/>
+      <Footer/>
   </div>
 </template>
+<script>
+    import Footer from "./components/Footer";
 
-<style lang="scss">
+    export default {
+        components: {
+             Footer
+        }
+    }
+</script>
+<style lang="scss" scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
