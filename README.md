@@ -1,6 +1,6 @@
 # Netflix
 # Lien
-https://netflix-us.netlify.app/#/
+https://netflix-us.netlify.app
 
 ## Project setup
 ```
