@@ -12,7 +12,7 @@
                   :perPageCustom="[[375, 2],[768, 3], [1024, 4],[1366, 5]]"
               >
                 <slide
-                    v-for="movie in moviesList " v-bind:key="movie.id + removeIdDuplicate()"
+                    v-for="movie in movies " v-bind:key="movie.id + removeIdDuplicate()"
                     id="movieDiv"
                 >
                   <div v-on:click="showDetail(movie.id)">
@@ -37,11 +37,13 @@
         data: function() {
 
             return {
-              moviesList:[],
               paginationButtons: false
             }
         },
-      props: ["typeMovie", "typeDescription"],
+        props:{
+          movies:{type:Array, required: true},
+          typeDescription:{type:String}
+          },
         components: {
           Carousel,
           Slide
@@ -53,11 +55,6 @@
           removeIdDuplicate() {
             return String(Math.random());
           }
-        },
-        created() {
-          this.getMovies()
-              .then(data => this.moviesList = data.results)
-              .catch(err => console.log(err));
         },
         mixins:[ApiMovies]
     }
@@ -87,7 +84,6 @@
   justify-content: flex-start;
   align-items: center;
   text-transform: capitalize;
-  border-top: 2px solid white;
   border-left-style: double;
 
 }
