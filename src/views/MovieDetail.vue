@@ -30,7 +30,7 @@
               <span>{{ movie.popularity }}</span>
             </p>
             <p>
-              Nombre de vote
+              Genre
               <span class="genrer" v-for="genre in movie.genres">{{ genre.name }}</span>
             </p>
             <p>
