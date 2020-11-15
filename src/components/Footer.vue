@@ -33,7 +33,6 @@
         background: black !important;
         padding: 40px 0;
     }
-
     #footer a {
         color: #ffffff;
         text-decoration: none !important;
@@ -66,4 +65,26 @@
         font-weight: bold;
     }
     // fin footer
+    @media only screen and (max-width: 626px) {
+      #footer li{
+        font-size: 20px;
+      }
+    }
+    @media only screen and (max-width: 541px) {
+      #footer li {
+        font-size: 20px;
+      }
+    }
+    @media only screen and (max-width: 500px) {
+      #footer li{
+        font-size: 20px;
+      }
+
+    }
+    @media only screen and (max-width: 320px) {
+      #footer li{
+        font-size: 20px;
+      }
+    }
+
 </style>

@@ -2,7 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Movies from "../views/Movies";
-import ProductDetail from "../views/MovieDetail";
+import MovieDetail from "../views/MovieDetail";
+import Main from "@/views/Main";
 
 
 Vue.use(VueRouter)
@@ -13,10 +14,14 @@ const routes = [
     name: 'Home',
     component: Home
   },
+  { path: "/Main",
+    name: "Main",
+    component: Main
+  },
   {
     path: '/movie/:id',
     name: 'MovieDetail',
-    component: ProductDetail
+    component: MovieDetail
   },
   {
     path: '/Movies',

@@ -2,15 +2,22 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import { BootstrapVue, LayoutPlugin } from 'bootstrap-vue'
+import VueCarousel from 'vue-carousel'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import {faChevronRight,faEnvelope} from '@fortawesome/free-solid-svg-icons'
+import {faChevronRight,faEnvelope, faPlay, faInfoCircle, faBars, faListUl} from '@fortawesome/free-solid-svg-icons'
 import { faFacebookF, faInstagram, faTwitter, faSnapchatGhost, faYoutube} from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faChevronRight, faFacebookF, faInstagram, faTwitter, faSnapchatGhost,faYoutube,faEnvelope)
+
+
+
+library.add(faChevronRight, faFacebookF, faInstagram, faTwitter, faSnapchatGhost,faYoutube,faEnvelope, faPlay,faInfoCircle,faBars, faListUl)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 // Install BootstrapVue
 Vue.use(BootstrapVue)
+
+// Install VueCarousel
+Vue.use(VueCarousel)
 
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(LayoutPlugin)

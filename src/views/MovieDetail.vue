@@ -1,35 +1,79 @@
 <template>
-    <b-col v-if="movie" class="product-card">
-<!--        <b-col class="product-image">-->
-<!--            <img src="http://www.aendesign.co.uk/images/hc%20t-shirt%20mock-up%20front%401-crop-u22496.png?crc=114384536">-->
-<!--        </b-col>-->
-        <b-col class="product__detail">
-            <h1>{{movie.title}}</h1>
-            <p>{{movie.description}}</p>
-           <!-- <Button  type="button" v-if="movie" btnTitle="Add to cart" classList="btn btn-red" :btnFunction="()=>addToCart(movie)"/>-->
-        </b-col>
-    </b-col>
+  <div>
+  <Header />
+    <div v-if="movie" id="Detail">
+      <div id="containerDetail">
+        <div id="descriptionsContainer">
+          <div id="movieTitle">
+            <h1>{{ movie.title }}</h1>
+          </div>
+          <div id="movieDetail">
+            <div class="col-md-6">
+              <img :src="'https://image.tmdb.org/t/p/w370_and_h556_bestv2/'+movie.poster_path" alt="" id="imagemPosterSlide" />
+            </div>
+            <div class="col-md-6 descript">
+              <h2>
+                Résumé :
+              </h2>
+              <p>
+                <span>{{ movie.overview }}</span>
+              </p>
+            </div>
+          </div>
+          <div id="descriptions">
+            <p>
+              Titre original
+              <span>{{ movie.original_title }}</span>
+            </p>
+            <p>
+              Popularité
+              <span>{{ movie.popularity }}</span>
+            </p>
+            <p>
+              Comptabilisation
+              <span>{{ movie.vote_count }}</span>
+            </p>
+            <p>
+              Notes
+              <span>{{ movie.vote_average }}</span>
+            </p>
+
+            <p>
+              Date de sortie
+              <span>{{ movie.release_date }}</span>
+            </p>
+            <p>
+              Langue originale
+              <span>{{ movie.original_language }}</span>
+            </p>
+          </div>
+          <button id="myList" v-on:click="addToMyList">
+            Ajouter à ma liste
+            <font-awesome-icon icon="list-ul" class="cr"/>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-    // import TitlePage from "../components/TitlePage";
-    // import Button from "../components/Button";
-    import ApiProducts from "../mixins/ApiMovies";
     import Card from "../mixins/Card";
+    import Header from "@/components/Header";
     import 'bootstrap/dist/css/bootstrap.css'
     import 'bootstrap-vue/dist/bootstrap-vue.css'
     import ApiMovies from "../mixins/ApiMovies";
 
     export default {
-        // components: {
-        //     TitlePage,
-        //     Button
-        // },
+      name: "MovieDetail",
         data: function () {
             return {
                 movie:null
             }
         },
+      components: {
+        Header,
+      },
         mixins:[ApiMovies, Card],
         created() {
             console.log(this.$route.params.id);
@@ -41,95 +85,214 @@
 </script>
 
 <style lang="scss" scoped>
+#Detail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #222222;
+}
+iframe {
+  width: 100%;
+  max-width: 650px;
+}
+#containerDetail {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#rateContainer {
+  width: 100%;
+}
+#rateNumber {
+  color: #e9e9e9;
+  font-size: 17px;
+  border: 2px solid white;
+  background-color: rgb(255, 196, 0);
+  border-radius: 10px;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  margin-top: 10px;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+#myList {
+  background: #ff142d;
+  border-radius: 25px;
+  text-decoration: none;
+  text-align: center;
+  height: 40px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #ffffff;
+  border: none;
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.5s;
+  margin-bottom: 30px;
+}
+#myList:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+  background: #c20b1d;
+}
+#movieDetail {
+  display: flex;
+  width: 45%;
+  justify-content: space-around;
+  margin-top: 1%;
+  margin-bottom: 3%;
+}
+#imagemPosterSlide {
+  border-radius: 15px;
+  transition: 0.5s;
+  margin-bottom: 20px;
+  width: 80%;
+  margin-left: 10%;
+  height: 100%;
+}
 
-    body {
-        background-color: #f3f3f3;
-    }
+#movieDetail p {
+  color: #e9e9e9;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+  "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  text-align: justify;
+}
+.descript{
+  margin-top: 2%;
+}
+.descript h2{
+  color: #ffffff;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  text-align: justify;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  font-weight: 900;
+  margin-bottom: 20px;
+  font-size: 40px
+}
+.descript p{
+  font-family: Avenir, Helvetica, Arial, sans-serif!important;
+  font-size: 25px;
+  text-align: left!important;
+}
+#descriptionsContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 20px;
+  padding-top: 20px;
+}
+#descriptionsContainer h1 {
+  color: #ffffff;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+#descriptions {
+  border-radius: 20px;
+  width: 90%;
+  height: 38%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 30px;
+}
+#descriptions span {
+  color: #969696;
+}
+#descriptions p {
+  color: #ffffff;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  text-align: justify;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  font-weight: bold;
+  margin-bottom: 30px;
+  font-size: 25px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  text-transform: capitalize;
+}
 
-    .product-card {
-        background-color: #fdfefe;
-        max-width: 650px;
-        min-height: 500px;
-        margin: 0 auto;
-        margin-top: 50px;
-        margin-bottom: 150px;
-        box-shadow: 8px 12px 30px darken( #f3f3f3, 25%);
-        color: #919495;
-        font-weight: normal;
-        text-align: left;
-        font-size: 18px;
-        position: relative;
-    }
-
-    .product__detail {
-        width: auto;
-        float: left;
-        height: 100%;
-        padding: 30px;
-        h1 {
-            color: #333;
-            font-family: 'Pacifico', cursive;
-            margin-bottom: 35px;
-        }
-        button {
-            width: 150px;
-            height: 50px;
-            margin-top: 20px;
-            background-color: #337AB7;
-            border-radius: 0;
-            color: #fff;
-            box-shadow: 2px 2px 7px darken(#337AB7, 25%);
-            &:hover, &:active, &:focus {
-                color: #fff;
-            }
-        }
-    }
-
-    //.product-image {
-    //   position: absolute;
-    //    right: -20px;
-    //    top: -40px;
-    //    img {
-    //  max-width: 400px;
-            //    }
-    //}
-
-    @media (max-width: 700px) {
-        .product-card {
-            margin-left: 20px;
-            margin-right: 20px;
-        }
-
-    }
-
-    @media (max-width: 540px) {
-        .product-card {
-            overflow: hidden;
-            margin-bottom: 50px;
-        }
-        .product__detail {
-            width: auto;
-            z-index: 1;
-        }
-        //.product-image {
-        //    width: 100%;
-         //   left: 40%;
-        //    top: -50px;
-        //}
-    }
-
-    @media (max-width: 440px) {
-        .product__detail {
-            width: auto;
-        }
-    }
-
-    @media (max-width: 365px) {
-        .product__detail {
-            width: auto;
-            position: relative;
-            color: #333;
-            background-color: rgba(255, 255, 255, 0.7);
-        }
-    }
+#movieTitle {
+  width: 58%;
+  text-align: center;
+}
+p span {
+  font-weight: 100;
+  font-size: 20px;
+  padding-top: 10px;
+}
+@media only screen and (max-width: 900px) {
+  #movieDetail {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
+  #descriptions p {
+    color: #ffffff;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    text-align: justify;
+    text-shadow: black 0.1em 0.1em 0.2em;
+    font-weight: bold;
+    margin-bottom: 30px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    text-transform: capitalize;
+  }
+  p span {
+    font-weight: 100;
+    font-size: 18px;
+    padding-top: 10px;
+  }
+}
+@media only screen and (max-width: 699px) {
+  iframe {
+    height: 200px;
+  }
+  #movieDetail {
+    display: block;
+    width: 100%;
+    justify-content: space-around;
+    margin-top: 5%;
+    margin-bottom:5%;
+  }
+  #descriptions p {
+    color: #ffffff;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    text-align: justify;
+    text-shadow: black 0.1em 0.1em 0.2em;
+    font-weight: bold;
+    margin-bottom: 30px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    text-transform: capitalize;
+  }
+  p span {
+    font-weight: 100;
+    font-size: 14px;
+    padding-top: 10px;
+  }
+}
+@media only screen and (max-width: 450px) {
+  #descriptions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 30px;
+  }
+}
 </style>
