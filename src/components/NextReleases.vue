@@ -1,7 +1,7 @@
 <template>
   <div class="nextReleasesContainer">
     <div class="videoContainer">
-      <video autoplay muted loop src="../assets/video.mp4">
+      <video autoplay loop src="../assets/video.mp4">
         <track kind="subtitles" srclang="fr-FR" src="subtitles.fr.vtt" lang="fr-FR">
       </video>
     </div>
